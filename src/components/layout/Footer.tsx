@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <h2 className="font-display text-2xl font-bold gold-text mb-3">Fashion Spot</h2>
-            <p className="text-[#C4A49E] text-xs tracking-widest uppercase mb-4">Mangalore's Premier Ladies Boutique</p>
+            <p className="text-[#C4A49E] text-xs tracking-widest uppercase mb-4">Mangalore&apos;s Premier Ladies Boutique</p>
             <p className="text-[#DDD5C8] text-sm leading-relaxed mb-6 max-w-sm">
               Curating the finest Indian and western wear for the modern woman. Discover timeless sarees, elegant kurtis, 
               stunning lehengas and more — reserve online, collect in-store.

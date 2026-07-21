@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { formatPrice, formatDate } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CheckCircle, MapPin, Clock, Phone, Calendar } from 'lucide-react';
+import { CheckCircle, MapPin, Clock, Phone } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

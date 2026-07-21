@@ -1,7 +1,7 @@
 import { getOrders, getProducts } from '@/lib/data';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, Package, AlertTriangle, CheckCircle, Clock, XCircle, LogOut } from 'lucide-react';
+import { ShoppingBag, Package, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import AdminLogoutButton from './AdminLogoutButton';
 

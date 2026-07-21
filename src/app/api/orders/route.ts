@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const customerEmail = body.customerEmail || body.email;
     const pickupDate = body.pickupDate;
     const items = body.items;
-    const total = body.total ?? (items?.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0) || 0);
+    const total = body.total ?? (items?.reduce((acc: number, item: { price: number; quantity: number }) => acc + (item.price * item.quantity), 0) || 0);
 
     if (!customerName || !customerPhone || !customerEmail || !pickupDate || !items?.length) {
       return NextResponse.json(

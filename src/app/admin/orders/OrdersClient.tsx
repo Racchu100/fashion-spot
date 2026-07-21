@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Order, OrderStatus } from '@/lib/types';
 import { formatPrice, formatDate } from '@/lib/utils';
 import Image from 'next/image';
-import { X, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 const STATUS_OPTIONS: OrderStatus[] = ['Pending', 'Confirmed', 'Cancelled', 'Completed'];
 
@@ -52,8 +52,8 @@ export default function OrdersClient({ initialOrders }: OrdersClientProps) {
       setStatusFeedback(`Status updated to ${status}`);
       setTimeout(() => setStatusFeedback(''), 3000);
       router.refresh();
-    } catch (err: any) {
-      setSaveError(err.message || 'Error updating status');
+    } catch (err: unknown) {
+      setSaveError(err instanceof Error ? err.message : 'Error updating status');
     } finally {
       setSaving(false);
     }
@@ -76,8 +76,8 @@ export default function OrdersClient({ initialOrders }: OrdersClientProps) {
       setNotesFeedback('✓ Notes saved successfully');
       setTimeout(() => setNotesFeedback(''), 3000);
       router.refresh();
-    } catch (err: any) {
-      setSaveError(err.message || 'Error saving notes');
+    } catch (err: unknown) {
+      setSaveError(err instanceof Error ? err.message : 'Error saving notes');
     } finally {
       setSaving(false);
     }

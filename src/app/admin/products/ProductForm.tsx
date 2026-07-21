@@ -19,7 +19,7 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     name: product?.name || '',
-    category: product?.category || 'Sarees',
+    category: (product?.category || 'Sarees') as Category,
     price: product?.price || '',
     originalPrice: product?.originalPrice || '',
     description: product?.description || '',
@@ -93,7 +93,7 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
           <label className="block text-sm text-[#DDD5C8] mb-1.5">Category *</label>
           <select
             value={formData.category}
-            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+            onChange={(e) => setFormData({ ...formData, category: e.target.value as Category })}
             className={inputClass}
             id="product-category-select"
           >

@@ -62,7 +62,7 @@ export default function AdminProductsPage() {
                 <h3 className="text-[#F3ECE0] font-medium text-sm mt-0.5 line-clamp-2">{product.name}</h3>
                 <div className="flex items-center justify-between mt-3">
                   <span className="text-[#C9A24B] font-bold">{formatPrice(product.price)}</span>
-                  <AdminProductActions productId={product.id} productSlug={product.slug} />
+                  <AdminProductActions productId={product.id} />
                 </div>
               </div>
             </div>

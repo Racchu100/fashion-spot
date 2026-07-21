@@ -73,8 +73,8 @@ export default function CheckoutPage() {
       const { id } = await res.json();
       clearCart();
       router.push(`/order-confirmation/${id}`);
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again or call us.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again or call us.');
     } finally {
       setLoading(false);
     }
@@ -89,7 +89,7 @@ export default function CheckoutPage() {
         <div className="mb-8">
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-[#F3ECE0] mb-2">Reserve Your Items</h1>
           <p className="text-[#C4A49E] text-sm">
-            No payment required now — just fill in your details and we'll hold your items for up to 3 days.
+            No payment required now — just fill in your details and we&apos;ll hold your items for up to 3 days.
           </p>
         </div>
 
@@ -165,7 +165,7 @@ export default function CheckoutPage() {
                         id="checkout-pickup-date"
                       />
                     </div>
-                    <p className="text-xs text-[#C4A49E] mt-1">Within the next 7 days. We'll hold your items for 3 days from today.</p>
+                    <p className="text-xs text-[#C4A49E] mt-1">Within the next 7 days. We&apos;ll hold your items for 3 days from today.</p>
                   </div>
                 </div>
               </div>
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
 
               <div className="bg-[#1a1a1a] rounded-2xl border border-[#C9A24B]/20 p-5">
                 <p className="text-[#DDD5C8] text-sm leading-relaxed">
-                  <span className="text-[#C9A24B] font-semibold">How it works:</span> Once you submit your reservation, we'll set aside your items. Bring this code to our store in Mangalore and pay in-person. No online payment needed!
+                  <span className="text-[#C9A24B] font-semibold">How it works:</span> Once you submit your reservation, we&apos;ll set aside your items. Bring this code to our store in Mangalore and pay in-person. No online payment needed!
                 </p>
               </div>
 

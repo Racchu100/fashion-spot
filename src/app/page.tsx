@@ -57,7 +57,7 @@ export default function HomePage() {
             <div className="flex items-center gap-2 mb-6">
               <div className="h-px w-12 bg-[#C9A24B]" />
               <span className="text-[#C9A24B] text-xs tracking-[0.3em] uppercase font-medium">
-                Mangalore's Premier Boutique
+                Mangalore&apos;s Premier Boutique
               </span>
             </div>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-[#F3ECE0] leading-tight mb-6">

@@ -7,7 +7,7 @@ import { useCart } from '@/lib/cart-context';
 import ProductCard from '@/components/shop/ProductCard';
 import { Product } from '@/lib/types';
 import { formatPrice, getStockStatus } from '@/lib/utils';
-import { ShoppingBag, Check, ChevronLeft, Star } from 'lucide-react';
+import { ShoppingBag, Check, Star } from 'lucide-react';
 import Link from 'next/link';
 
 interface ProductDetailClientProps {

@@ -7,10 +7,9 @@ import { useState } from 'react';
 
 interface Props {
   productId: string;
-  productSlug: string;
 }
 
-export default function AdminProductActions({ productId, productSlug }: Props) {
+export default function AdminProductActions({ productId }: Props) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
 
