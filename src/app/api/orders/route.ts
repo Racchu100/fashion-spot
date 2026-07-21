@@ -4,6 +4,8 @@ import { generateReservationCode } from '@/lib/utils';
 import { v4 as uuidv4 } from 'uuid';
 import { Order } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const orders = getOrders();
   return NextResponse.json(orders);

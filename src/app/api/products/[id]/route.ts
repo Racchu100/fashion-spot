@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProductById, saveProduct, deleteProduct } from '@/lib/data';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
   const product = getProductById(params.id);
   if (!product) return NextResponse.json({ error: 'Not found' }, { status: 404 });

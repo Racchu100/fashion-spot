@@ -3,6 +3,8 @@ import { getProducts, saveProduct } from '@/lib/data';
 import { v4 as uuidv4 } from 'uuid';
 import { Product } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   return NextResponse.json(getProducts());
 }
