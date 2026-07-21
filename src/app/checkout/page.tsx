@@ -76,6 +76,33 @@ export default function CheckoutPage() {
         throw new Error('Order submitted but order ID was missing');
       }
 
+      if (typeof window !== 'undefined') {
+        try {
+          const reservationObj = {
+            id: data.id,
+            reservationCode: data.reservationCode,
+            customerName: formData.name,
+            customerPhone: formData.phone,
+            customerEmail: formData.email,
+            pickupDate: formData.pickupDate,
+            items: items.map((i) => ({
+              productId: i.productId,
+              productName: i.productName,
+              productImage: i.productImage,
+              price: i.price,
+              size: i.size,
+              color: i.color,
+              quantity: i.quantity,
+            })),
+            total: totalPrice,
+          };
+          sessionStorage.setItem(`last_reservation_${data.id}`, JSON.stringify(reservationObj));
+          sessionStorage.setItem('last_reservation_latest', JSON.stringify(reservationObj));
+        } catch {
+          // ignore
+        }
+      }
+
       clearCart();
       router.push(`/order-confirmation/${data.id}`);
     } catch (err: unknown) {
