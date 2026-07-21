@@ -1,0 +1,56 @@
+[
+  {
+    "id": "3f2175a2-730f-49f4-a8df-1dbdf30b2be9",
+    "reservationCode": "FS-MRUZYAWL-EA7",
+    "customerName": "Rakshith M",
+    "customerPhone": "8568958956",
+    "customerEmail": "rakshithm2699@gmail.com",
+    "pickupDate": "2026-07-23",
+    "items": [
+      {
+        "productId": "p1",
+        "productName": "Burgundy Silk Banarasi Saree",
+        "productImage": "/saree-burgundy.png",
+        "price": 4999,
+        "color": "Burgundy",
+        "quantity": 1
+      },
+      {
+        "productId": "p3",
+        "productName": "Royal Blue Georgette Saree",
+        "productImage": "/saree-blue.png",
+        "price": 2999,
+        "color": "Royal Blue",
+        "quantity": 1
+      }
+    ],
+    "total": 7998,
+    "status": "Pending",
+    "createdAt": "2026-07-21T18:38:25.461Z",
+    "updatedAt": "2026-07-21T19:39:11.995Z",
+    "notes": ""
+  },
+  {
+    "id": "941e7bc6-a6fc-4486-9f89-0d1063ce8629",
+    "reservationCode": "FS-MRUZTG8L-F29",
+    "customerName": "Priya Shetty",
+    "customerPhone": "+919876543210",
+    "customerEmail": "priya@example.com",
+    "pickupDate": "2026-07-22",
+    "items": [
+      {
+        "productId": "p1",
+        "productName": "Burgundy Silk Banarasi Saree",
+        "productImage": "/saree-burgundy.png",
+        "price": 4999,
+        "color": "Burgundy",
+        "quantity": 2
+      }
+    ],
+    "total": 9998,
+    "status": "Cancelled",
+    "createdAt": "2026-07-21T18:34:39.093Z",
+    "updatedAt": "2026-07-21T19:39:24.580Z",
+    "notes": "Customer called to confirm pickup time tomorrow at 2 PM."
+  }
+]

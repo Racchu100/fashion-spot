@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#B91C1C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Black Circle Base -->
+  <circle cx="100" cy="100" r="98" fill="#101010" />
+
+  <!-- Large Bold FASHION Text -->
+  <text x="100" y="74" text-anchor="middle" fill="#FFFFFF" font-family="'Inter', 'Montserrat', 'Arial Black', sans-serif" font-size="32" font-weight="900" letter-spacing="3">FASHION</text>
+
+  <!-- Large Bold SP O T Layout -->
+  <g font-family="'Inter', 'Montserrat', 'Arial Black', sans-serif" font-weight="900">
+    <!-- SP -->
+    <text x="20" y="142" fill="#FFFFFF" font-size="52" letter-spacing="2">SP</text>
+    <!-- Large Red Circle Spot as 'O' -->
+    <circle cx="118" cy="124" r="23" fill="url(#redGrad)" />
+    <!-- T -->
+    <text x="148" y="142" fill="#FFFFFF" font-size="52">T</text>
+  </g>
+</svg>
