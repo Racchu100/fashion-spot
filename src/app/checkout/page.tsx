@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useCart } from '@/lib/cart-context';
 import { formatPrice } from '@/lib/utils';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { CalendarDays, Phone, Mail, User, AlertCircle } from 'lucide-react';
 
 interface FormData {
@@ -16,7 +15,6 @@ interface FormData {
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
-  const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
@@ -104,7 +102,7 @@ export default function CheckoutPage() {
       }
 
       clearCart();
-      router.push(`/order-confirmation/${data.id}`);
+      window.location.href = `/order-confirmation/${data.id}?code=${data.reservationCode || ''}`;
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again or call us.');
     } finally {

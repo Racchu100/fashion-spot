@@ -7,12 +7,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle, MapPin, Clock, Phone } from 'lucide-react';
 
+import { useSearchParams } from 'next/navigation';
+
 interface Props {
   initialOrder: Order | null;
   orderId: string;
 }
 
 export default function OrderConfirmationClient({ initialOrder, orderId }: Props) {
+  const searchParams = useSearchParams();
   const [order, setOrder] = useState<Order | null>(initialOrder);
 
   useEffect(() => {
@@ -30,7 +33,8 @@ export default function OrderConfirmationClient({ initialOrder, orderId }: Props
     }
   }, [order, orderId]);
 
-  const reservationCode = order?.reservationCode || `FS-${orderId.slice(-6).toUpperCase()}`;
+  const urlCode = searchParams?.get('code');
+  const reservationCode = order?.reservationCode || urlCode || `FS-${orderId.slice(-6).toUpperCase()}`;
   const customerName = order?.customerName || 'Customer';
   const customerPhone = order?.customerPhone || '';
   const customerEmail = order?.customerEmail || '';
