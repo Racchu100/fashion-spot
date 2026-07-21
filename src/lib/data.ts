@@ -2,47 +2,31 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import { Product, Order } from './types';
+import initialProducts from '@/data/products.json';
+import initialOrders from '@/data/orders.json';
 
-const seedProductsPath = path.join(process.cwd(), 'src/data/products.json');
-const seedOrdersPath = path.join(process.cwd(), 'src/data/orders.json');
+const ordersTmpPath = path.join(os.tmpdir(), 'fashion_spot_orders.json');
+const productsTmpPath = path.join(os.tmpdir(), 'fashion_spot_products.json');
 
-function getWritablePath(fileName: string, seedPath: string): string {
-  const tmpPath = path.join(os.tmpdir(), fileName);
-  if (fs.existsSync(tmpPath)) {
-    return tmpPath;
-  }
-  try {
-    fs.accessSync(seedPath, fs.constants.W_OK);
-    return seedPath;
-  } catch {
-    if (fs.existsSync(seedPath)) {
-      const content = fs.readFileSync(seedPath, 'utf-8');
-      try {
-        fs.writeFileSync(tmpPath, content);
-      } catch {
-        // ignore
-      }
-    }
-    return tmpPath;
-  }
-}
-
-function safeWriteFile(fileName: string, seedPath: string, content: string): void {
-  const targetPath = getWritablePath(fileName, seedPath);
-  try {
-    fs.writeFileSync(targetPath, content);
-  } catch {
-    const tmpPath = path.join(os.tmpdir(), fileName);
-    fs.writeFileSync(tmpPath, content);
-  }
-}
+// In-memory fallback cache for serverless environments
+let memoryOrders: Order[] | null = null;
+let memoryProducts: Product[] | null = null;
 
 // ── Products ──────────────────────────────────────────────────────────────────
 
 export function getProducts(): Product[] {
-  const targetPath = getWritablePath('products.json', seedProductsPath);
-  const raw = fs.readFileSync(targetPath, 'utf-8');
-  return JSON.parse(raw) as Product[];
+  if (memoryProducts) return memoryProducts;
+  try {
+    if (fs.existsSync(productsTmpPath)) {
+      const raw = fs.readFileSync(productsTmpPath, 'utf-8');
+      memoryProducts = JSON.parse(raw) as Product[];
+      return memoryProducts;
+    }
+  } catch {
+    // fallback
+  }
+  memoryProducts = [...(initialProducts as Product[])];
+  return memoryProducts;
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
@@ -69,20 +53,39 @@ export function saveProduct(product: Product): void {
   } else {
     products.unshift(product);
   }
-  safeWriteFile('products.json', seedProductsPath, JSON.stringify(products, null, 2));
+  memoryProducts = [...products];
+  try {
+    fs.writeFileSync(productsTmpPath, JSON.stringify(products, null, 2));
+  } catch {
+    // ignore filesystem write errors in serverless
+  }
 }
 
 export function deleteProduct(id: string): void {
   const products = getProducts().filter((p) => p.id !== id);
-  safeWriteFile('products.json', seedProductsPath, JSON.stringify(products, null, 2));
+  memoryProducts = [...products];
+  try {
+    fs.writeFileSync(productsTmpPath, JSON.stringify(products, null, 2));
+  } catch {
+    // ignore
+  }
 }
 
 // ── Orders ────────────────────────────────────────────────────────────────────
 
 export function getOrders(): Order[] {
-  const targetPath = getWritablePath('orders.json', seedOrdersPath);
-  const raw = fs.readFileSync(targetPath, 'utf-8');
-  return JSON.parse(raw) as Order[];
+  if (memoryOrders) return memoryOrders;
+  try {
+    if (fs.existsSync(ordersTmpPath)) {
+      const raw = fs.readFileSync(ordersTmpPath, 'utf-8');
+      memoryOrders = JSON.parse(raw) as Order[];
+      return memoryOrders;
+    }
+  } catch {
+    // fallback
+  }
+  memoryOrders = [...(initialOrders as Order[])];
+  return memoryOrders;
 }
 
 export function getOrderById(id: string): Order | undefined {
@@ -97,5 +100,10 @@ export function saveOrder(order: Order): void {
   } else {
     orders.unshift(order);
   }
-  safeWriteFile('orders.json', seedOrdersPath, JSON.stringify(orders, null, 2));
+  memoryOrders = [...orders];
+  try {
+    fs.writeFileSync(ordersTmpPath, JSON.stringify(orders, null, 2));
+  } catch {
+    // ignore
+  }
 }

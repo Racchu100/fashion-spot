@@ -44,8 +44,9 @@ export async function POST(req: NextRequest) {
 
     saveOrder(order);
     return NextResponse.json({ id: order.id, reservationCode: order.reservationCode }, { status: 201 });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Internal server error';
+    console.error('Order creation error:', err);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
