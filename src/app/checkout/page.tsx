@@ -66,13 +66,18 @@ export default function CheckoutPage() {
         }),
       });
 
+      const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
         throw new Error(data.error || 'Failed to place reservation');
       }
-      const { id } = await res.json();
+
+      if (!data.id) {
+        throw new Error('Order submitted but order ID was missing');
+      }
+
       clearCart();
-      router.push(`/order-confirmation/${id}`);
+      router.push(`/order-confirmation/${data.id}`);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again or call us.');
     } finally {
